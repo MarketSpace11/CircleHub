@@ -26,9 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let timerInterval;
     let isGamePlaying = false; // Variable para controlar si el juego está en curso
 
-    // Configura la música de fondo del juego para que se reproduzca en loop
-    gameMusic.loop = true;
-
     // Oculta el círculo inicialmente
     circle.classList.add('hidden');
 
@@ -72,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gameVideo.play().catch(error => {
                 console.error('Error playing game video:', error);
             });
+            gameMusic.loop = true; // Ajustar para que la música del juego se repita
             gameMusic.play().catch(error => {
                 console.error('Error playing game music:', error);
             });
@@ -111,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
         timeLeft = 30;
         scoreDisplay.textContent = score;
         timeDisplay.textContent = timeLeft;
-        circle.classList.add('hidden'); // Oculta el círculo al reiniciar el juego
+        circle.classList.remove('hidden'); // Asegúrate de que el círculo se muestra al reiniciar
         gameOverScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden'); // Muestra la pantalla del juego directamente
 
@@ -123,6 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gameVideo.play().catch(error => {
                 console.error('Error playing game video:', error);
             });
+            gameMusic.loop = true; // Ajustar para que la música del juego se repita
             gameMusic.play().catch(error => {
                 console.error('Error playing game music:', error);
             });
@@ -219,4 +218,13 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
+
+    // Detener la música de inicio al hacer clic en cualquier parte del juego
+    gameScreen.addEventListener('click', function() {
+        if (!startMusic.paused) {
+            startMusic.pause();
+            startMusic.currentTime = 0;
+        }
+    });
 });
+
