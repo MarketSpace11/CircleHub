@@ -131,5 +131,16 @@ body {
     z-index: 2; /* Asegura que las partículas estén por encima del círculo */
 }
 
+/* Estilos específicos para eliminar contornos en navegadores móviles */
+button:focus, 
+button:active,
+#circle:focus, 
+#circle:active {
+    outline: none !important; /* Elimina el contorno */
+    box-shadow: none !important; /* Elimina cualquier sombra */
+    border: none !important; /* Elimina el borde si existe */
+}
+
+
 
 
