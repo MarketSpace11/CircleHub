@@ -65,6 +65,7 @@ body {
     border-radius: 12px; /* Bordes redondeados */
     position: absolute;
     outline: none; /* Elimina el contorno del botón */
+    box-shadow: none; /* Elimina cualquier sombra que pueda parecer un contorno */
 }
 
 /* Efecto hover para los botones */
@@ -93,6 +94,7 @@ body {
     z-index: 1; /* Asegura que el círculo esté por debajo de los fuegos artificiales */
     transition: left 0.5s linear, top 0.5s linear; /* Movimiento más fluido */
     outline: none; /* Elimina el contorno del círculo */
+    box-shadow: none; /* Elimina cualquier sombra que pueda parecer un contorno */
 }
 
 /* Muestra la puntuación en la pantalla de juego */
@@ -128,5 +130,6 @@ body {
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     z-index: 2; /* Asegura que las partículas estén por encima del círculo */
 }
+
 
 
