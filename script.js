@@ -42,6 +42,17 @@ document.addEventListener("DOMContentLoaded", function() {
         circle.classList.remove('hidden'); // Muestra el círculo cuando sea necesario
     }
 
+    function moveCircleToCenter() {
+        const gameScreenWidth = gameScreen.clientWidth;
+        const gameScreenHeight = gameScreen.clientHeight;
+        const centerX = (gameScreenWidth - circleSize) / 2;
+        const centerY = (gameScreenHeight - circleSize) / 2;
+
+        circle.style.left = `${centerX}px`;
+        circle.style.top = `${centerY}px`;
+        circle.classList.remove('hidden'); // Asegura que el círculo esté visible
+    }
+
     function getRandomColor() {
         const letters = '0123456789ABCDEF';
         let color = '#';
@@ -104,31 +115,22 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function resetCirclePosition() {
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-
-        // Calcular la posición central
-        const centerX = (screenWidth - circle.offsetWidth) / 2;
-        const centerY = (screenHeight - circle.offsetHeight) / 2;
-
-        // Asignar la posición al círculo
-        circle.style.left = `${centerX}px`;
-        circle.style.top = `${centerY}px`;
-    }
-
     function resetGame() {
         score = 0;
         timeLeft = 30;
         scoreDisplay.textContent = score;
         timeDisplay.textContent = timeLeft;
-        resetCirclePosition(); // Reposiciona el círculo en el centro al reiniciar el juego
-        circle.classList.remove('hidden'); // Muestra el círculo al reiniciar el juego
+        circleSize = 150; // Restablece el tamaño inicial del círculo
+        circle.style.width = `${circleSize}px`;
+        circle.style.height = `${circleSize}px`;
+
         gameOverScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden'); // Muestra la pantalla del juego directamente
 
         clearInterval(timerInterval); // Asegura que el temporizador anterior se detenga
         timerInterval = setInterval(updateTimer, 1000); // Reinicia el temporizador
+
+        moveCircleToCenter(); // Mueve el círculo al centro de la pantalla al reiniciar
 
         // Reproducir el video y la música del juego solo si no está ya en reproducción
         if (!isGamePlaying) {
@@ -235,6 +237,22 @@ document.addEventListener("DOMContentLoaded", function() {
             hasStarted = true;
         }
     });
+
+    // Manejo de toques en pantalla táctil
+    document.addEventListener('touchstart', function(event) {
+        if (event.touches.length > 1) {
+            return; // Ignora eventos de múltiples toques
+        }
+        const touch = event.touches[0];
+        const x = touch.clientX;
+        const y = touch.clientY;
+
+        const rect = circle.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            circle.click(); // Simula el clic si se toca el círculo
+        }
+    });
 });
+
 
 
