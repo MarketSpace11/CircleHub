@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let gameInterval;
     let timerInterval;
     let isGamePlaying = false; // Variable para controlar si el juego está en curso
+    let hasStarted = false; // Variable para controlar si la música de inicio ya se ha reproducido
 
     // Oculta el círculo inicialmente
     circle.classList.add('hidden');
@@ -53,12 +54,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function startGame() {
         startScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden');
-        circle.classList.remove('hidden'); // Muestra el círculo al comenzar el juego
         moveCircle();
         gameInterval = setInterval(moveCircle, circleSpeed);
         timerInterval = setInterval(updateTimer, 1000);
 
-        // Detener la música de inicio antes de comenzar el juego
+        // Detener la música de inicio
         if (!startMusic.paused) {
             startMusic.pause();
             startMusic.currentTime = 0;
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gameVideo.play().catch(error => {
                 console.error('Error playing game video:', error);
             });
-            gameMusic.loop = true; // Ajustar para que la música del juego se repita
+            gameMusic.loop = true; // Reproducir música del juego en loop
             gameMusic.play().catch(error => {
                 console.error('Error playing game music:', error);
             });
@@ -109,7 +109,8 @@ document.addEventListener("DOMContentLoaded", function() {
         timeLeft = 30;
         scoreDisplay.textContent = score;
         timeDisplay.textContent = timeLeft;
-        circle.classList.remove('hidden'); // Asegúrate de que el círculo se muestra al reiniciar
+        circle.classList.remove('hidden'); // Muestra el círculo al reiniciar el juego
+        moveCircle(); // Asegura que el círculo se mueva al reiniciar
         gameOverScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden'); // Muestra la pantalla del juego directamente
 
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gameVideo.play().catch(error => {
                 console.error('Error playing game video:', error);
             });
-            gameMusic.loop = true; // Ajustar para que la música del juego se repita
+            gameMusic.loop = true; // Asegura que la música del juego esté en loop
             gameMusic.play().catch(error => {
                 console.error('Error playing game music:', error);
             });
@@ -186,7 +187,9 @@ document.addEventListener("DOMContentLoaded", function() {
         startGame();
     });
 
-    restartButton.addEventListener('click', resetGame);
+    restartButton.addEventListener('click', function() {
+        resetGame();
+    });
 
     function handleMissedClick() {
         timeLeft -= 2;
@@ -212,19 +215,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Reproduce la música de inicio solo después de una interacción del usuario
     document.body.addEventListener('click', function() {
-        if (startMusic.paused && !isGamePlaying) {
+        if (!hasStarted) {
             startMusic.play().catch(error => {
                 console.error('Error playing start music:', error);
             });
-        }
-    });
-
-    // Detener la música de inicio al hacer clic en cualquier parte del juego
-    gameScreen.addEventListener('click', function() {
-        if (!startMusic.paused) {
-            startMusic.pause();
-            startMusic.currentTime = 0;
+            hasStarted = true;
         }
     });
 });
+
 
