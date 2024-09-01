@@ -90,10 +90,13 @@ body {
     height: 200px;
     background-color: red;
     border-radius: 15%;
+    border: none;
     cursor: pointer;
     z-index: 1; /* Asegura que el círculo esté por debajo de los fuegos artificiales */
     transition: left 0.5s linear, top 0.5s linear; /* Movimiento más fluido */
     outline: none; /* Elimina el contorno del círculo */
+    -webkit-tap-highlight-color:
+transparent;
     box-shadow: none; /* Elimina cualquier sombra que pueda parecer un contorno */
 }
 
