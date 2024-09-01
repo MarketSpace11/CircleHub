@@ -91,14 +91,7 @@ body {
     cursor: pointer;
     z-index: 1; /* Asegura que el círculo esté por debajo de los fuegos artificiales */
     transition: left 0.5s linear, top 0.5s linear; /* Movimiento más fluido */
-
-    /* Ajustes para evitar el cuadro sombreado en dispositivos Android */
-    -webkit-touch-callout: none; /* Desactiva el menú contextual */
-    -webkit-user-select: none; /* Desactiva la selección de texto */
-    -moz-user-select: none; /* Desactiva la selección de texto */
-    -ms-user-select: none; /* Desactiva la selección de texto */
-    user-select: none; /* Desactiva la selección de texto */
-    touch-action: manipulation; /* Mejora el rendimiento táctil */
+    outline: none; /* Elimina el efecto de enfoque */
 }
 
 /* Muestra la puntuación en la pantalla de juego */
