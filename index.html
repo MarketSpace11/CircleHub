@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrapa el Círculo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de Inicio -->
+    <div id="start-screen" class="screen">
+        <video id="start-video" class="video-background" autoplay muted loop>
+            <source src="background-start.mp4" type="video/mp4">
+        </video>
+        <h1 id="title">Atrapa el Círculo</h1>
+        <button id="start-button" class="start-button">Start</button>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div id="game-screen" class="screen hidden">
+        <video id="game-video" class="video-background" autoplay muted loop>
+            <source src="background-game.mp4" type="video/mp4">
+        </video>
+        <div id="circle"></div>
+        <div id="score">0</div>
+        <div id="time">30</div>
+    </div>
+
+    <!-- Pantalla de Game Over -->
+    <div id="game-over-screen" class="screen hidden">
+        <video id="game-over-video" class="video-background" autoplay muted loop>
+            <source src="background-game-over.mp4" type="video/mp4">
+        </video>
+        <div id="game-over-container">
+            <div id="game-over-text">
+                <h1 id="game-over-title">Game Over</h1>
+                <div id="final-score">Score: <span id="final-score-value">0</span></div>
+            </div>
+            <button id="restart-button" class="start-button">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <!-- Archivos de Audio -->
+    <audio id="start-music" src="background-start.mp3" preload="auto"></audio>
+    <audio id="game-music" src="background-game.mp3" preload="auto"></audio>
+    <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+    <audio id="miss-sound" src="miss.mp3" preload="auto"></audio>
+    <audio id="game-over-sound" src="game-over.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
