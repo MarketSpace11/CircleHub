@@ -104,13 +104,26 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    function resetCirclePosition() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        // Calcular la posición central
+        const centerX = (screenWidth - circle.offsetWidth) / 2;
+        const centerY = (screenHeight - circle.offsetHeight) / 2;
+
+        // Asignar la posición al círculo
+        circle.style.left = `${centerX}px`;
+        circle.style.top = `${centerY}px`;
+    }
+
     function resetGame() {
         score = 0;
         timeLeft = 30;
         scoreDisplay.textContent = score;
         timeDisplay.textContent = timeLeft;
+        resetCirclePosition(); // Reposiciona el círculo en el centro al reiniciar el juego
         circle.classList.remove('hidden'); // Muestra el círculo al reiniciar el juego
-        moveCircle(); // Asegura que el círculo se mueva al reiniciar
         gameOverScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden'); // Muestra la pantalla del juego directamente
 
