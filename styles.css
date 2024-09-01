@@ -89,7 +89,7 @@ body {
     width: 200px;
     height: 200px;
     background-color: red;
-    border-radius: 25%;
+    border-radius: 50%;
     border: none;
     cursor: pointer;
     z-index: 1; /* Asegura que el círculo esté por debajo de los fuegos artificiales */
