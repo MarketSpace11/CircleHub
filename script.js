@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let gameInterval;
     let timerInterval;
     let isGamePlaying = false; // Variable para controlar si el juego está en curso
-    let isStartMusicPlayed = false; // Variable para controlar si la música de inicio ya se reprodujo
+
+    // Configura la música de fondo del juego para que se reproduzca en loop
+    gameMusic.loop = true;
 
     // Oculta el círculo inicialmente
     circle.classList.add('hidden');
@@ -109,11 +111,9 @@ document.addEventListener("DOMContentLoaded", function() {
         timeLeft = 30;
         scoreDisplay.textContent = score;
         timeDisplay.textContent = timeLeft;
-        circle.classList.remove('hidden'); // Muestra el círculo al reiniciar el juego
+        circle.classList.add('hidden'); // Oculta el círculo al reiniciar el juego
         gameOverScreen.classList.add('hidden');
         gameScreen.classList.remove('hidden'); // Muestra la pantalla del juego directamente
-
-        moveCircle(); // Mover el círculo a una posición inicial
 
         clearInterval(timerInterval); // Asegura que el temporizador anterior se detenga
         timerInterval = setInterval(updateTimer, 1000); // Reinicia el temporizador
@@ -212,13 +212,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Reproduce la música de inicio solo después de una interacción del usuario
-    document.body.addEventListener('click', function(event) {
-        // Asegúrate de que la música de inicio solo se reproduce en la pantalla de inicio
-        if (!isStartMusicPlayed && !isGamePlaying && startScreen.classList.contains('hidden') === false) {
+    document.body.addEventListener('click', function() {
+        if (startMusic.paused && !isGamePlaying) {
             startMusic.play().catch(error => {
                 console.error('Error playing start music:', error);
             });
-            isStartMusicPlayed = true;
         }
     });
 });
