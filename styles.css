@@ -139,7 +139,11 @@ button:active,
     outline: none !important; /* Elimina el contorno */
     box-shadow: none !important; /* Elimina cualquier sombra */
     border: none !important; /* Elimina el borde si existe */
+    -webkit-appearance: none; /* Elimina el estilo predeterminado de los botones en algunos navegadores */
+    -moz-appearance: none; /* Elimina el estilo predeterminado de los botones en algunos navegadores */
 }
+
+
 
 
 
