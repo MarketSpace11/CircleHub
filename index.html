@@ -25,18 +25,16 @@
     </div>
 
     <!-- Pantalla de Game Over -->
-    <div id="game-over-screen" class="screen hidden">
-        <video id="game-over-video" class="video-background" autoplay muted loop>
-            <source src="background-game-over.mp4" type="video/mp4">
-        </video>
-        <div id="game-over-container">
-            <div id="game-over-text">
-                <h1 id="game-over-title">Game Over</h1>
-                <div id="final-score">Score: <span id="final-score-value">0</span></div>
-            </div>
-            <button id="restart-button" class="start-button">Retry</button>
+<div id="game-over-screen" class="screen hidden">
+    <img id="game-over-image" class="image-background" src="background-game-over.jpg" alt="Game Over Background">
+    <div id="game-over-container">
+        <div id="game-over-text">
+            <h1 id="game-over-title">Game Over</h1>
+            <div id="final-score">Score: <span id="final-score-value">0</span></div>
         </div>
+        <button id="restart-button" class="start-button">Retry</button>
     </div>
+</div>
 
     <!-- Archivos de Audio -->
     <audio id="start-music" src="background-start.mp3" preload="auto"></audio>
